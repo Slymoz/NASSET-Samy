@@ -1,1 +1,1 @@
-# Voici plusieurs projets réalisés à EPITECH
+# Voici plusieurs projets réalisés à EPITECH.
