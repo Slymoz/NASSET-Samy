@@ -1,5 +1,5 @@
 # Le jeu du Sokoban, réalisé en Ncurses, librairie C.
-#
-# Utilisation :
-#
-# ./my_sokoban map.txt
+
+Utilisation :
+
+./my_sokoban map.txt
