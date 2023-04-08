@@ -1,0 +1,133 @@
+#!/usr/bin/python3
+
+from math import *
+import sys
+
+if len(sys.argv) < 2:
+    exit(84)
+
+def to_int(arg):
+    try:
+        return int(arg)
+    except ValueError:
+        exit(84)
+
+def to_float(arg):
+    try:
+        return float(arg)
+    except ValueError:
+        exit(84)
+
+if sys.argv[1] == '-h':
+    print("USAGE\n\t./105torus opt a0 a1 a2 a3 a4 n\n")
+    print("DESCRIPTION")
+    print("\topt         method option:")
+    print("\t            \t1 for the bisection method")
+    print("\t            \t2 for Newton's method")
+    print("\t            \t3 for the scant method")
+    print("\ta[0-4]      coefficients of the equation")
+    print("\tn           precision (the application of the polynomial to the solution should")
+    print("\t            be smaller than 10^-n")
+
+if len(sys.argv) != 8 :
+    exit(84)
+
+if sys.argv[1] != '1' and sys.argv[1] != '2' and sys.argv[1] != '3':
+    exit(84)
+
+opt = to_int(sys.argv[1])
+
+a0 = to_int(sys.argv[2])
+a1 = to_int(sys.argv[3])
+a2 = to_int(sys.argv[4])
+a3 = to_int(sys.argv[5])
+a4 = to_int(sys.argv[6])
+
+n = to_int(sys.argv[7])
+
+if n < 0:
+    exit(84)
+
+def f(a):
+    a0 = to_int(sys.argv[2])
+    a1 = to_int(sys.argv[3])
+    a2 = to_int(sys.argv[4])
+    a3 = to_int(sys.argv[5])
+    a4 = to_int(sys.argv[6])
+    return a**4*a4 + a**3*a3 + a**2*a2 + a*a1 + a0
+
+def fprime(a):
+    a0 = to_int(sys.argv[2])
+    a1 = to_int(sys.argv[3])
+    a2 = to_int(sys.argv[4])
+    a3 = to_int(sys.argv[5])
+    a4 = to_int(sys.argv[6])
+    return 4*a**3*a4 + 3*a**2*a3 + 2*a*a2 + a1
+
+a = 0
+b = 1
+m = 0
+
+
+if opt == 1:
+    while (b - a) > (10**-n):
+        resulta = f(a)
+        m = (a + b) / 2
+        resultm = f(m)
+        if (resulta * resultm < 0):
+            b = m
+            if ("{0:.{1}g}".format(m, n) == "{0:.{1}g}".format(m, n + 5)):
+                print("x = {0:.{1}g}".format(m, n))
+            else:
+                print("x = {0:.{1}f}".format(m, n))
+        else:
+            a = m
+            if ("{0:.{1}g}".format(m, n) == "{0:.{1}g}".format(m, n + 5)):
+                print("x = {0:.{1}g}".format(m, n))
+            else:
+                print("x = {0:.{1}f}".format(m, n))
+
+
+
+if opt == 2:
+    xn = 0.5
+    print("x = 0.5")
+    for loop in range(100):
+        resultxn = f(xn)
+        resultxnp = fprime(xn)
+        if (resultxnp == 0):
+            exit(12)
+        xm = xn - (resultxn / resultxnp)
+        if (xm == 0):
+            exit(13)
+        if (abs((xm - xn)) / abs((xm)) < 10**-n):
+            exit(0)
+        else:
+            if ("{0:.{1}g}".format(xm, n) == "{0:.{1}g}".format(xm, n + 5)):
+                print("x = {0:.{1}g}".format(xm, n))
+            else:
+                print("x = {0:.{1}f}".format(xm, n))
+            xn = xm
+    exit(84)
+
+
+if opt == 3:
+    x0 = 0
+    x1 = 1
+    for loop in range(100):
+        if (f(x1) - f(x0) == 0):
+            exit(12)
+        xm = x1 - (f(x1) * (x1 - x0)) / (f(x1) - f(x0))
+        if (abs((xm - x1)) / abs((xm)) < 10**-n):
+            if ("{0:.{1}g}".format(xm, n) == "{0:.{1}g}".format(xm, n + 15)):
+                print("x = {0:.{1}g}".format(xm, n))
+            else:
+                print("x = {0:.{1}f}".format(xm, n))
+            exit(0)
+        else:
+            if ("{0:.{1}g}".format(xm, n) == "{0:.{1}g}".format(xm, n + 15)):
+                print("x = {0:.{1}g}".format(xm, n))
+            else:
+                print("x = {0:.{1}f}".format(xm, n))
+        x0 = x1
+        x1 = xm
