@@ -1,4 +1,4 @@
-# Création de simulateur de vol grâce à un fichier en entrée en CSFML, librairie C.
+# Création de simulateur de vol grâce à un fichier en entrée en CSFML, librairie du langage C.
 
 Compilation :
 

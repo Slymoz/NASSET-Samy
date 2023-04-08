@@ -1,4 +1,4 @@
-# Recréation d'un interpréteur de commande, CMD.
+# Recréation d'un interpréteur de commande, CMD en langage C.
 
 Compilation :
 

@@ -1,4 +1,4 @@
-# Le jeu du Sokoban, réalisé en Ncurses, librairie C.
+# Le jeu du Sokoban, réalisé en Ncurses, librairie du langage C.
 
 Compilation :
 

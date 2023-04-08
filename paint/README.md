@@ -1,4 +1,4 @@
-# Recréation du logiciel Paint en CSFML, librairie C.
+# Recréation du logiciel Paint en CSFML, librairie du langage C.
 
 Projet fini sauf la possibilité de gommer en rond.
 
